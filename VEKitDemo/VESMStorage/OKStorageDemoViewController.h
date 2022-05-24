@@ -6,10 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OKDemoBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OKStorageDemoViewController : UITableViewController
+@interface OKStorageDemoViewController : UITableViewController<OKDemoEntryItemProtocol>
 
 @end
 

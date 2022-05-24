@@ -64,7 +64,7 @@ TODO: Add long description of the pod here.
     d.dependency 'VEKit/VEH5Kit'
     d.dependency 'VEKitDemo/Public'
   end
- 
+
   s.subspec 'VEAppUpdateHelper' do |d|
     d.source_files = 'VEKitDemo/VEAppUpdateHelper/**/*.{h,m,mm}'
     d.public_header_files = 'VEKitDemo/VEAppUpdateHelper/**/*.h'
@@ -83,7 +83,7 @@ TODO: Add long description of the pod here.
     d.dependency 'VEInstall/CAID'
     d.dependency 'VEInstall/OneKit'
   end
- 
+
   s.subspec 'VERemoteConfig' do |d|
     d.source_files = 'VEKitDemo/VERemoteConfig/**/*.{h,m,mm}'
     d.public_header_files = 'VEKitDemo/VERemoteConfig/**/*.h'
@@ -142,6 +142,13 @@ TODO: Add long description of the pod here.
     d.source_files = 'VEKitDemo/Timor/**/*.{h,m,mm}'
     d.public_header_files = 'VEKitDemo/Timor/**/*.h'
     d.dependency 'VEKit/Timor'
+    d.dependency 'VEKitDemo/Public'
+  end
+
+  s.subspec 'VESMStorage' do |d|
+    d.source_files = 'VEKitDemo/VESMStorage/**/*.{h,m,mm}'
+    d.public_header_files = 'VEKitDemo/VESMStorage/**/*.h'
+    d.dependency 'VEKit/VESMStorage'
     d.dependency 'VEKitDemo/Public'
   end
 

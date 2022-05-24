@@ -74,6 +74,16 @@ WCDB_PROPERTY(modifiedTime)
     self.entries = @[@"DB插入",@"DB查询",@"DB查询失败",@"KV写入",@"KV读取",@"KV读取失败",@"文件写入",@"文件读取",@"文件读取失败"];
 }
 
+- (NSString *)title
+{
+    return @"国密存储";
+}
+
+- (NSString *)iconName
+{
+    return @"zip";
+}
+
 - (void)setUp
 {
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -92,6 +102,8 @@ WCDB_PROPERTY(modifiedTime)
     self.fileStore = [VESMFileStorage defaultStorage];
     self.sm4Key = [SM4Encryptor createSm4Key];
 }
+
+
 
 - (void)testDB
 {
@@ -251,6 +263,7 @@ WCDB_PROPERTY(modifiedTime)
 //    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:ok];
 //    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
     return alert;
 }
 
