@@ -135,7 +135,7 @@
 {
     self.demoItems = [[NSMutableArray alloc] init];
     
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self getItemClasses:^(__unsafe_unretained Class class) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 id<OKDemoEntryItemProtocol> item = [[class alloc] init];
