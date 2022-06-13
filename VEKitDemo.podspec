@@ -25,7 +25,7 @@ TODO: Add long description of the pod here.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'shangguanchengyang' => 'shangguanchengyang.1@bytedance.com' }
-  s.source           = { :git => 'https://gitee.com/volcengine/VEKitDemo.git' }
+  s.source           = { :git => 'https://gitee.com/volcengine/VEKitDemo.git', :tag => '#{s.version.to_s}' }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
@@ -145,6 +145,18 @@ TODO: Add long description of the pod here.
     d.public_header_files = 'VEKitDemo/Timor/**/*.h'
     d.dependency 'Timor'
     d.dependency 'VEKitDemo/Public'
+    d.dependency 'TimorHostPlugins/ActionSheet'
+    d.dependency 'TimorHostPlugins/Media'
+    d.dependency 'TimorHostPlugins/Picker'
+    d.dependency 'TimorHostPlugins/Location'
+    d.dependency 'TimorHostPlugins/Map-MapKit'
+    d.dependency 'TimorHostPlugins/Pigeon'
+    d.dependency 'TimorHostPlugins/ContentPlayer'
+    d.dependency 'TimorHostPlugins/VideoPlayer'
+    d.dependency 'TimorHostPlugins/Reachability-Open'
+    d.dependency 'TimorHostPlugins/WebImage-SDWebImage'
+    d.dependency 'TimorHostPlugins/DeviceOrientation'
+    d.dependency 'TimorHostPlugins/Campaign'
   end
 
   s.subspec 'VESMStorage' do |d|
@@ -161,5 +173,11 @@ TODO: Add long description of the pod here.
     d.dependency 'VEKitDemo/Public'
   end
 
+  s.subspec 'VECampaign' do |d|
+    d.source_files = 'VEKitDemo/VECampaign/**/*.{h,m,mm}'
+    d.public_header_files = 'VEKitDemo/VECampaign/**/*.h'
+    d.dependency 'VECampaign'
+    d.dependency 'VEKitDemo/Public'
+  end
 
 end
