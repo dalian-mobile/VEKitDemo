@@ -173,10 +173,34 @@ TODO: Add long description of the pod here.
     d.dependency 'VEKitDemo/Public'
   end
 
+  s.subspec 'VEShare' do |d|
+    d.source_files = 'VEKitDemo/VEShare/**/*.{h,m,mm}'
+    d.public_header_files = 'VEKitDemo/VEShare/**/*.h'
+    # d.dependency 'VEShare'
+    d.dependency 'VEShare/Biz/StartUp'
+    d.dependency 'VEShare/Biz/APM'
+    d.dependency 'VEShare/Biz/SystemBiz'
+    d.dependency 'VEShare/Biz/QQBiz'
+    d.dependency 'VEShare/Biz/WeChatBiz'
+    d.dependency 'VEShare/Biz/WeiboBiz'
+    d.dependency 'VEShare/Biz/AliPayBiz'
+    d.dependency 'VEShare/Biz/DingTalkBiz'
+    d.dependency 'VEShare/Biz/AwemeBiz'
+    d.dependency 'VEShare/Biz/Activity'
+    d.dependency 'VEShare/UI/Panel'
+  end
+
   s.subspec 'VECampaign' do |d|
     d.source_files = 'VEKitDemo/VECampaign/**/*.{h,m,mm}'
     d.public_header_files = 'VEKitDemo/VECampaign/**/*.h'
     d.dependency 'VECampaign'
+    d.dependency 'VEKitDemo/Public'
+  end
+  
+  s.subspec 'VEPush' do |d|
+    d.source_files = 'VEKitDemo/VEPush/**/*.{h,m,mm}'
+    d.public_header_files = 'VEKitDemo/VEPush/**/*.h'
+    d.dependency 'VEPush'
     d.dependency 'VEKitDemo/Public'
   end
 
