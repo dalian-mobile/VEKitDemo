@@ -30,7 +30,7 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '9.0'
   s.static_framework = true
-
+  
   s.subspec 'Public' do |d|
     d.source_files = 'VEKitDemo/Public/**/*.{h,m,mm}'
     d.public_header_files = 'VEKitDemo/Public/**/*.h'
@@ -53,6 +53,7 @@ TODO: Add long description of the pod here.
     d.dependency 'OneKit/Service'
     d.dependency 'OneKit/Database'
     d.dependency 'OneKit/MARS/Auth'
+    d.dependency 'LGAlertView'
   end
 
   s.subspec 'UITask' do |d|
