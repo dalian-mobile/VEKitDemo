@@ -49,6 +49,10 @@ OKAppTaskAddFunction () {
         if (index == 1) {
             [OneKitApp grantPrivacy];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:ONEKIT_PRIVACY_TRYED_KEY];
+            id delegate = [[UIApplication sharedApplication] delegate];
+            if ([delegate respondsToSelector:@selector(disablePrivacyApiDetector)]) {
+                [delegate performSelector:@selector(disablePrivacyApiDetector)];
+            }
         }else{
             // not granted..
         }
