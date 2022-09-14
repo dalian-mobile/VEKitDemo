@@ -11,6 +11,10 @@
 
 @implementation VEPushDelegate
 
+- (BOOL)useNotificationServiceExtension{
+    return YES;
+}
+
 - (void)handleAuthorizationResult:(BOOL)granted withError:(NSError *)error{
     NSLog(@"[VEPushDemo] Authorization result: %d", granted);
 }
@@ -21,24 +25,23 @@
 
 - (NSSet<UNNotificationCategory *> *) notificationCategory
 {
-    UNNotificationAction *send = [UNNotificationAction actionWithIdentifier:@"SEND" title:@"Send" options:UNNotificationActionOptionForeground];
+    UNNotificationAction *send = [UNNotificationAction actionWithIdentifier:@"ENTER" title:@"Enter" options:UNNotificationActionOptionForeground];
     
     UNNotificationAction *deny = [UNNotificationAction actionWithIdentifier:@"DENY" title:@"Deny" options:UNNotificationActionOptionDestructive];
 
-    UNNotificationCategory *cat = [UNNotificationCategory categoryWithIdentifier:@"MESSAGE_RECV" actions:@[send, deny] intentIdentifiers:@[] options:UNNotificationCategoryOptionCustomDismissAction];
+    UNNotificationCategory *cat = [UNNotificationCategory categoryWithIdentifier:@"LocalTest" actions:@[send, deny] intentIdentifiers:@[] options:UNNotificationCategoryOptionCustomDismissAction];
     
     return [NSSet setWithObject:cat];
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    NSLog(@"[VEPushDemo] APNS token: %@", VEPushService.apnsToken);
-    NSLog(@"[VEPushDemo] VEPNS token: %@", VEPushService.vepnsToken);
+    NSLog(@"[VEPushDemo] Register apns token successfully");
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
-    NSLog(@"[VEPushDemo] Fail to register APNS: %@", error.localizedDescription);
+    NSLog(@"[VEPushDemo] Fail to register apns token: %@", error.localizedDescription);
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
@@ -62,7 +65,11 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 {
     NSDictionary *userInfo = notification.request.content.userInfo;
     NSLog(@"[VEPushDemo] Will present notification: %@", userInfo);
-    completionHandler(UNNotificationPresentationOptionNone);
+    if(@available(iOS 14.0, *)){
+        completionHandler(UNNotificationPresentationOptionBanner);
+    }else{
+        completionHandler(UNNotificationPresentationOptionAlert);
+    }
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center openSettingsForNotification:(UNNotification *)notification {

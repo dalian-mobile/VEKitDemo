@@ -28,6 +28,14 @@ OKAppTaskAddFunction () {
         BOOL has_tryed = [[NSUserDefaults standardUserDefaults] boolForKey:ONEKIT_PRIVACY_TRYED_KEY];
         if (!has_tryed) {
             [self tryGrantPrivacy];
+        } else {
+            id delegate = [[UIApplication sharedApplication] delegate];
+            if ([delegate respondsToSelector:@selector(disablePrivacyApiDetector)]) {
+                [delegate performSelector:@selector(disablePrivacyApiDetector)];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [OneKitApp grantPrivacy];
+            });
         }
     }
 }
@@ -47,12 +55,13 @@ OKAppTaskAddFunction () {
     textView.bounds = CGRectMake(0, 0, 200, 200);
     LGAlertView *alertView = [[LGAlertView alloc] initWithViewAndTitle:@"隐私" message:nil style:LGAlertViewStyleAlert view:textView buttonTitles:@[@"不同意",@"同意"] cancelButtonTitle:nil destructiveButtonTitle:nil actionHandler:^(LGAlertView * _Nonnull alertView, NSUInteger index, NSString * _Nullable title) {
         if (index == 1) {
-            [OneKitApp grantPrivacy];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:ONEKIT_PRIVACY_TRYED_KEY];
             id delegate = [[UIApplication sharedApplication] delegate];
             if ([delegate respondsToSelector:@selector(disablePrivacyApiDetector)]) {
                 [delegate performSelector:@selector(disablePrivacyApiDetector)];
             }
+            [OneKitApp grantPrivacy];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:ONEKIT_PRIVACY_TRYED_KEY];
+
         }else{
             // not granted..
         }

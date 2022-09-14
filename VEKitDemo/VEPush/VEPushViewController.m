@@ -39,9 +39,9 @@
     return @"publish";
 }
 
-- (void)viewDidLoad
+- (void)viewDidLayoutSubviews
 {
-    [super viewDidLoad];
+    [super viewDidLayoutSubviews];
     self.view.backgroundColor = BackgroundColor;
     self.buttonCount = 0;
     [VEPushService setBadgeNumber:0];
@@ -60,18 +60,21 @@
     self.vepnsToken.lineBreakMode = NSLineBreakByWordWrapping;
     self.vepnsToken.numberOfLines = 0;
     [self.view addSubview:self.vepnsToken];
+    NSLog(@"[VEPushDemo] Vepns token: %@", VEPushService.vepnsToken);
 
     self.udid = [[UILabel alloc] initWithFrame: CGRectMake(ScreenW*0.1, 160, ScreenW*0.8, 30)];
     self.udid.text = [NSString stringWithFormat:@"udid: %@", [(id<OKUniqueDIDService>) OK_CENTER_OBJECT(OKUniqueDIDService) udid]];
     self.udid.lineBreakMode = NSLineBreakByWordWrapping;
     self.udid.numberOfLines = 0;
     [self.view addSubview:self.udid];
+    NSLog(@"[VEPushDemo] Udid: %@", [(id<OKUniqueDIDService>) OK_CENTER_OBJECT(OKUniqueDIDService) udid]);
 
     self.apnsToken = [[UILabel alloc] initWithFrame: CGRectMake(ScreenW*0.1, 190, ScreenW*0.8, 70)];
     self.apnsToken.text = [NSString stringWithFormat:@"apns token: %@", VEPushService.apnsToken];
     self.apnsToken.lineBreakMode = NSLineBreakByWordWrapping;
     self.apnsToken.numberOfLines = 0;
     [self.view addSubview:self.apnsToken];
+    NSLog(@"[VEPushDemo] Apns token: %@", VEPushService.apnsToken);
     
     [self addButton:@"绑定标签" action:@selector(bindTags)];
     [self addButton:@"解绑标签" action:@selector(unbindTags)];
