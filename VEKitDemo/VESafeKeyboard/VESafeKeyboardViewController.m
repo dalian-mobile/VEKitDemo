@@ -13,6 +13,10 @@
 #import <OneKit/OKRequest.h>
 #import <OneKit/OKRequestBuilder.h>
 #import <OneKit/OKModel.h>
+#import <OneKit/OKSectionData.h>
+
+OK_STRINGS_EXPORT("OKDemoEntryItem","VESafeKeyboardViewController")
+
 
 #define ScreenW [UIScreen mainScreen].bounds.size.width
 #define ScreenH [UIScreen mainScreen].bounds.size.height
@@ -44,7 +48,7 @@ typedef void (^NetworkCallback)(NSData *data, NSURLResponse *response, NSError *
 @implementation VESafeKeyboardViewController
 
 - (NSString *)iconName {
-    return @"keyboard";
+    return @"demo_keyboard";
 }
 
 - (NSString *)title {

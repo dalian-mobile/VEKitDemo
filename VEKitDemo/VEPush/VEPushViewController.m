@@ -7,7 +7,9 @@
 #import "VEPushViewController.h"
 #import <OneKit/OKServices.h>
 #import <VEPush/VEPushService.h>
-#import "OKDemoBaseViewController.h"
+#import <OneKit/OKSectionData.h>
+
+OK_STRINGS_EXPORT("OKDemoEntryItem","VEPushViewController")
 
 #define ScreenW [UIScreen mainScreen].bounds.size.width
 #define ScreenH [UIScreen mainScreen].bounds.size.height
@@ -16,7 +18,7 @@
 #define ButtonTop 300
 #define ButtonLineHeight 45
 
-@interface VEPushViewController () <OKDemoEntryItemProtocol>
+@interface VEPushViewController ()
 
 @property(nonatomic, retain) UILabel *vepnsToken;
 @property(nonatomic, retain) UILabel *apnsToken;
@@ -36,15 +38,14 @@
 
 - (NSString *)iconName
 {
-    return @"publish";
+    return @"demo_push";
 }
 
-- (void)viewDidLayoutSubviews
+- (void)viewDidLoad
 {
-    [super viewDidLayoutSubviews];
+    [super viewDidLoad];
     self.view.backgroundColor = BackgroundColor;
     self.buttonCount = 0;
-    [VEPushService setBadgeNumber:0];
     
     self.switcherLabel =[[UILabel alloc] initWithFrame: CGRectMake(ScreenW*0.1, 100, ScreenW*0.8, 30)];
     self.switcherLabel.text = @"push switcher";
@@ -56,25 +57,19 @@
     [self.view addSubview:self.switcher];
 
     self.vepnsToken = [[UILabel alloc] initWithFrame: CGRectMake(ScreenW*0.1, 130, ScreenW*0.8, 30)];
-    self.vepnsToken.text = [NSString stringWithFormat:@"ve push token: %@", VEPushService.vepnsToken];
     self.vepnsToken.lineBreakMode = NSLineBreakByWordWrapping;
     self.vepnsToken.numberOfLines = 0;
     [self.view addSubview:self.vepnsToken];
-    NSLog(@"[VEPushDemo] Vepns token: %@", VEPushService.vepnsToken);
 
     self.udid = [[UILabel alloc] initWithFrame: CGRectMake(ScreenW*0.1, 160, ScreenW*0.8, 30)];
-    self.udid.text = [NSString stringWithFormat:@"udid: %@", [(id<OKUniqueDIDService>) OK_CENTER_OBJECT(OKUniqueDIDService) udid]];
     self.udid.lineBreakMode = NSLineBreakByWordWrapping;
     self.udid.numberOfLines = 0;
     [self.view addSubview:self.udid];
-    NSLog(@"[VEPushDemo] Udid: %@", [(id<OKUniqueDIDService>) OK_CENTER_OBJECT(OKUniqueDIDService) udid]);
 
     self.apnsToken = [[UILabel alloc] initWithFrame: CGRectMake(ScreenW*0.1, 190, ScreenW*0.8, 70)];
-    self.apnsToken.text = [NSString stringWithFormat:@"apns token: %@", VEPushService.apnsToken];
     self.apnsToken.lineBreakMode = NSLineBreakByWordWrapping;
     self.apnsToken.numberOfLines = 0;
     [self.view addSubview:self.apnsToken];
-    NSLog(@"[VEPushDemo] Apns token: %@", VEPushService.apnsToken);
     
     [self addButton:@"绑定标签" action:@selector(bindTags)];
     [self addButton:@"解绑标签" action:@selector(unbindTags)];
@@ -86,6 +81,20 @@
     [self addButton:@"解绑属性" action:@selector(unbindAttributes)];
     [self addButton:@"解绑所有属性" action:@selector(unbindAllAttributes)];
     [self addButton:@"查询属性" action:@selector(queryAttributes)];
+    [self addButton:@"清除角标" action:@selector(cleanBadge)];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.vepnsToken.text = [NSString stringWithFormat:@"ve push token: %@", VEPushService.vepnsToken];
+    NSLog(@"[VEPushDemo] Vepns token: %@", VEPushService.vepnsToken);
+    
+    self.udid.text = [NSString stringWithFormat:@"udid: %@", [(id<OKUniqueDIDService>) OK_CENTER_OBJECT(OKUniqueDIDService) udid]];
+    NSLog(@"[VEPushDemo] Udid: %@", [(id<OKUniqueDIDService>) OK_CENTER_OBJECT(OKUniqueDIDService) udid]);
+    
+    self.apnsToken.text = [NSString stringWithFormat:@"apns token: %@", VEPushService.apnsToken];
+    NSLog(@"[VEPushDemo] Apns token: %@", VEPushService.apnsToken);
 }
 
 - (void) addButton:(NSString *)title action:(SEL)action
@@ -106,6 +115,11 @@
 -(void)notificationStatusChanged:(UISwitch *)sender
 {
     VEPushService.appNotifiable = sender.on;
+}
+
+-(void)cleanBadge
+{
+    [VEPushService setBadgeNumber:-1];
 }
 
 - (void)bindTags{

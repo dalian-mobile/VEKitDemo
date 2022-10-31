@@ -10,12 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol OKDemoEntryItemProtocol
-- (NSString *)iconName;
-- (NSString *)title;
-@end
-
-
 
 @interface OKDemoBaseViewController : UIViewController
 

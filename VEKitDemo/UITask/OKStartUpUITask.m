@@ -9,6 +9,7 @@
 #import "OKFeedViewController.h"
 
 #import <OneKit/OKStartUpFunction.h>
+#import "OKMainViewController.h"
 
 OKAppTaskAddFunction () {
     [[OKStartUpUITask new] scheduleTask];
@@ -19,16 +20,19 @@ OKAppTaskAddFunction () {
 - (void)startWithLaunchOptions:(NSDictionary<UIApplicationLaunchOptionsKey,id> *)launchOptions {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[self rootVC]];
-        window.rootViewController = nav;
+        window.rootViewController = [self rootVC];
         [window makeKeyAndVisible];
         [UIApplication sharedApplication].delegate.window = window;
     });
 }
 
 - (UIViewController *)rootVC {
-    Class claszz = NSClassFromString(@"OKMainViewController") ?: [OKFeedViewController class];
-    return [claszz new];
+    Class claszz = NSClassFromString(@"VEMainTabBarController");
+    if (claszz) {
+        return [claszz new];
+    }
+    claszz = [OKMainViewController class];
+    return [[UINavigationController alloc] initWithRootViewController:[claszz new]];
 }
 
 @end

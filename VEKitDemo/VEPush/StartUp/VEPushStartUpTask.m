@@ -18,7 +18,8 @@ OKAppTaskAddFunction () {
 @implementation VEPushStartUpTask
 
 - (void)startWithLaunchOptions:(NSDictionary<UIApplicationLaunchOptionsKey,id> *)launchOptions {
-    [VEPushService registerApnsTokenWithDelegate: [VEPushDelegate new]];
+    [VEPushService registerDelegate: [VEPushDelegate new]];
+    [VEPushService registerApnsToken];
 }
 
 @end
