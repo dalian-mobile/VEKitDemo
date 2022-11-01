@@ -11,7 +11,13 @@
 #import <OneKit/OKApplicationInfo.h>
 #import "OKDemoBaseViewController.h"
 
-@interface VEInstallTestViewController ()<OKDemoEntryItemProtocol>
+#import <OneKit/OKSectionData.h>
+
+OK_STRINGS_EXPORT("OKDemoEntryItem","VEInstallTestViewController")
+
+
+
+@interface VEInstallTestViewController ()
 
 @end
 
@@ -42,7 +48,7 @@
 
 - (NSString *)iconName
 {
-    return @"debug";
+    return @"demo_register";
 }
 
 #pragma mark - getter

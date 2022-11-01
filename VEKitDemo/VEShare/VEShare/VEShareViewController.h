@@ -10,6 +10,6 @@
 
 #import <VEKitDemo/OKDemoBaseViewController.h>
 
-@interface VEShareViewController : OKDemoBaseViewController<OKDemoEntryItemProtocol>
+@interface VEShareViewController : OKDemoBaseViewController
 
 @end

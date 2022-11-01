@@ -9,7 +9,12 @@
 #import <OneKit/OKScreenshotTools.h>
 #import "OKDemoBaseViewController.h"
 
-@interface OKScreenshotViewController ()<OKDemoEntryItemProtocol>
+
+#import <OneKit/OKSectionData.h>
+
+OK_STRINGS_EXPORT("OKDemoEntryItem","OKScreenshotViewController")
+
+@interface OKScreenshotViewController ()
 @property (nonatomic,strong) WKWebView *webView;
 
 @end
@@ -73,7 +78,7 @@
 
 - (NSString *)iconName
 {
-    return @"screenshot";
+    return @"demo_screenshot";
 }
 
 
@@ -86,6 +91,8 @@
               [self saveImage:snapshotImage];
             }];
           });
+        }else{
+            NSLog(@"not auth");
         }
     }];
 }
@@ -98,6 +105,8 @@
               [self saveImage:snapshotImage];
             }];
           });
+        }else{
+            NSLog(@"not auth");
         }
     }];
 }

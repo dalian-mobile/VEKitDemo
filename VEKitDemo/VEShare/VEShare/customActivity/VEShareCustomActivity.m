@@ -7,7 +7,7 @@
 //
 
 #import "VEShareCustomActivity.h"
-#import "VEShareManager.h"
+#import <VEShare/VEShareManager.h>
 #import <OneKit/ByteDanceKit.h>
 #import <VEShare/VEShareMacros.h>
 

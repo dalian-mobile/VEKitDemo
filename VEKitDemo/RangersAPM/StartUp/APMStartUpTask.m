@@ -11,18 +11,33 @@
 #import <OneKit/OKStartUpFunction.h>
 #import <OneKit/OKApplicationInfo.h>
 
+# ifndef APP_ID_FOR_RANGERS_APM
+# define APP_ID_FOR_RANGERS_APM info.appID
+# endif
+
 OKAppTaskAddFunction () {
     [[APMStartUpTask new] scheduleTask];
 }
 
+
 @implementation APMStartUpTask
+
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.dependencies = [NSSet setWithArray:@[@protocol(OKPrivacyGrantNode)]];
+    }
+    
+    return self;
+}
 
 - (void)startWithLaunchOptions:(NSDictionary<UIApplicationLaunchOptionsKey,id> *)launchOptions {
     OKApplicationInfo *info = [OKApplicationInfo sharedInstance];
     // APM Init
-    RangersAPMConfig *apmConfig = [RangersAPMConfig configWithAppID:info.appID];
+    RangersAPMConfig *apmConfig = [RangersAPMConfig configWithAppID:APP_ID_FOR_RANGERS_APM];
     apmConfig.channel = info.channel;
-    apmConfig.deviceIDSource = RAPMDeviceIDSourceFromUser;
+    apmConfig.deviceIDSource = RAPMDeviceIDSourceFromAPMService;
     
     // APM Log
     [RangersAPM allowDebugLogUsingLogger:nil];

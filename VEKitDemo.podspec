@@ -39,6 +39,8 @@ TODO: Add long description of the pod here.
     }
     d.xcconfig = { 'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/Headers/Public/WCDB"' }
     d.dependency 'OneKit'
+    d.dependency 'TYCyclePagerView'
+    d.dependency 'VERemoteConfig'
   end
 
   s.subspec 'OneKit' do |d|
@@ -204,5 +206,13 @@ TODO: Add long description of the pod here.
     d.dependency 'VEPush'
     d.dependency 'VEKitDemo/Public'
   end
+  
+  s.subspec 'VEQRCode' do |d|
+    d.source_files = 'VEKitDemo/VEQRCode/**/*.{h,m,mm,cpp}'
+    d.public_header_files = 'VEKitDemo/VEQRCode/**/*.h'
+#    d.dependency 'smash/qrcode'
+    d.dependency 'SGQRCode'
+  end
+
 
 end

@@ -52,6 +52,11 @@
 #import "VEShareDatasoruce.h"
 #import "VEShareDelegateHandler.h"
 
+#import <OneKit/OKSectionData.h>
+
+OK_STRINGS_EXPORT("OKDemoEntryItem","VEShareViewController")
+
+
 @interface VEShareViewController () <UIImagePickerControllerDelegate,
                                     UINavigationControllerDelegate, //VEVideoShareDialogServiceDelegate,
                                     UIPickerViewDataSource,
@@ -81,7 +86,7 @@
 
 - (NSString *)iconName
 {
-    return @"spot";
+    return @"demo_share";
 }
 
 - (NSString *)title
@@ -135,8 +140,8 @@
     _pickerView.delegate = self;
     
     UILabel *pickerTip = [[UILabel alloc] initWithFrame:CGRectMake(0, _pickerView.frame.origin.y, 220, 50)];
-    pickerTip.text = @"SDK分享类型选择：上下滑ta ->";
-    pickerTip.textAlignment = NSTextAlignmentRight;
+    pickerTip.text = @"SDK分享类型滑动选择：";
+    pickerTip.textAlignment = NSTextAlignmentCenter;
     pickerTip.font = [UIFont systemFontOfSize:14];
     
     [_scrollView addSubview:self.field];
@@ -172,8 +177,8 @@
     NSArray *btnTitleSel = @[
                              @[@"方式一面板展示", @"oldBeginShare"],
                              @[@"方式二面板展示", @"highLevelBeginShare"],
-                             @[@"外露微信分享", @"outsideWechatShare"],
-                             @[@"外露朋友圈分享", @"outsideTimelineShare"],
+                             @[@"微信分享", @"outsideWechatShare"],
+                             @[@"朋友圈分享", @"outsideTimelineShare"],
 //                             @[@"展示debug入口", @"showDebugKit"],
 //                             @[@"清空沙盒", @"cleanSandbox"],
                              ];

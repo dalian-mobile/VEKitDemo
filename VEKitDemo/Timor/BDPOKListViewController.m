@@ -10,7 +10,13 @@
 #import "BDPOKScanCodeViewController.h"
 #import <Timor/BDPTimorClient.h>
 
-@interface BDPOKListViewController ()<OKDemoEntryItemProtocol>
+#import <OneKit/OKSectionData.h>
+
+OK_STRINGS_EXPORT("OKDemoEntryItem","BDPOKListViewController")
+
+
+
+@interface BDPOKListViewController ()
 
 @end
 
@@ -29,7 +35,7 @@
 
 - (NSString *)iconName
 {
-    return @"rc1";
+    return @"demo_timor";
 }
 
 

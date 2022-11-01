@@ -23,12 +23,13 @@
 
 //#import "VEToutiaoShare.h"
 
-static NSString *const qqOAuthAppID = @"";
-static NSString *const zhifubaoAuthAppID = @"";
-static NSString *const weChatAuthAppID = @"";
-static NSString *const awemeAuthAppID = @"";
-static NSString *const weiboAuthAppID = @"";
-static NSString *const dingTalkAuthAppID = @"";
+static NSString *const qqOAuthAppID = @"101860283";
+static NSString *const zhifubaoAuthAppID = @"2015083100244990";
+static NSString *const weChatAuthAppID = @"wx1b85cc171cff41b3";
+static NSString *const awemeAuthAppID = @"aw81ef9i0fe0a8y9";
+static NSString *const weiboAuthAppID = @"2504490989";
+static NSString *const dingTalkAuthAppID = @"dingoamfoom0wrwiyexx2z";
+
 
 @implementation VEShareDebugUtil
 

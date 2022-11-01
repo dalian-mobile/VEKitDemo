@@ -11,9 +11,15 @@
 #import "OKDebugInfoViewController.h"
 #import "OKDemoBaseViewController.h"
 
+
+#import <OneKit/OKSectionData.h>
+
+OK_STRINGS_EXPORT("OKDemoEntryItem","BDHotfixViewController")
+
+
 static NSString *const BDHotfixLocalPatchKey = @"kBDHotfixPatchListResponse";
 
-@interface BDHotfixViewController ()<BDHotfixDelegate,OKDemoEntryItemProtocol>
+@interface BDHotfixViewController ()<BDHotfixDelegate>
 
 @end
 
@@ -33,7 +39,7 @@ static NSString *const BDHotfixLocalPatchKey = @"kBDHotfixPatchListResponse";
 
 - (NSString *)iconName
 {
-    return @"hotfix";
+    return @"demo_hotfix";
 }
 
 

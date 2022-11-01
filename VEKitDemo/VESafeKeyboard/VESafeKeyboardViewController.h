@@ -11,7 +11,7 @@
 
 @import UIKit;
 
-@interface VESafeKeyboardViewController : OKDemoBaseViewController<UITextFieldDelegate, OKDemoEntryItemProtocol>
+@interface VESafeKeyboardViewController : OKDemoBaseViewController<UITextFieldDelegate>
 
 @end
 

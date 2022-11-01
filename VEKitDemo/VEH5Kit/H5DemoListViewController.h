@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface H5DemoListViewController : OKListViewController<OKDemoEntryItemProtocol>
+@interface H5DemoListViewController : OKListViewController
 
 @end
 

@@ -81,6 +81,7 @@
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(16+32+16, cellHeight/2 - 20/2, 200, 20)];
 //        self.titleLabel.backgroundColor = [UIColor redColor];
         self.titleLabel.textAlignment = NSTextAlignmentLeft;
+        self.titleLabel.textColor = [UIColor blackColor];
         self.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:16];
         [self.containerView addSubview:self.imgView];
         [self.containerView addSubview:self.titleLabel];

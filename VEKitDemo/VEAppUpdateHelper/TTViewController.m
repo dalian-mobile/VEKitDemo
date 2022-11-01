@@ -21,7 +21,12 @@
 #import <OneKit/OKStartUpFunction.h>
 #import "OKDemoBaseViewController.h"
 
-@interface TTViewController ()<TTAppUpdateDelegate,OKDemoEntryItemProtocol>
+
+#import <OneKit/OKSectionData.h>
+
+OK_STRINGS_EXPORT("OKDemoEntryItem","TTViewController")
+
+@interface TTViewController ()<TTAppUpdateDelegate>
 @property (nonatomic, strong) TTAppUpdateHelperDefault *updateHelper;
 @end
 
@@ -67,7 +72,7 @@
 
 - (NSString *)iconName
 {
-    return @"publish";
+    return @"demo_publish";
 }
 
 - (void)checkButtonClicked:(UIButton *)btn {
