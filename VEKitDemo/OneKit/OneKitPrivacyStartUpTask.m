@@ -43,7 +43,7 @@ OKAppTaskAddFunction () {
 - (void)tryGrantPrivacy
 {
     
-    NSString *content = @"<p>请充分阅读并理解</p> <p><a href = 'www.bytedance.com'>《隐私政策》</a>和<a href = 'www.bytedance.com'>《用户协议》</a></p> \
+    NSString *content = @"<p>请充分阅读并理解</p> <p><a href = 'https://www.volcengine.com/docs/6468/132494'>《隐私政策》</a>和<a href = 'https://www.volcengine.com/docs/6468/132498'>《用户协议》</a></p> \
     <p>1.我们对您的个人信息的收集/保存/使用/对外提供/保护等规则条款，以及您的用户权利等条款</p>  \
     <p>2.约定我们的限制责任、免责条款</p> \
     <p>3.其他以颜色或加粗进行标识的重要条款。</p> \
@@ -53,6 +53,7 @@ OKAppTaskAddFunction () {
     NSAttributedString *contentStr = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)} documentAttributes:nil error:nil];
     textView.attributedText = contentStr;
     textView.bounds = CGRectMake(0, 0, 200, 200);
+    textView.editable = NO;
     LGAlertView *alertView = [[LGAlertView alloc] initWithViewAndTitle:@"隐私" message:nil style:LGAlertViewStyleAlert view:textView buttonTitles:@[@"不同意",@"同意"] cancelButtonTitle:nil destructiveButtonTitle:nil actionHandler:^(LGAlertView * _Nonnull alertView, NSUInteger index, NSString * _Nullable title) {
         if (index == 1) {
             id delegate = [[UIApplication sharedApplication] delegate];
@@ -63,10 +64,11 @@ OKAppTaskAddFunction () {
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:ONEKIT_PRIVACY_TRYED_KEY];
 
         }else{
-            // not granted..
+            exit(0);
         }
     } cancelHandler:nil destructiveHandler:nil];
 //    alertView.delegate = self;
+    alertView.cancelOnTouch = NO;
     [alertView show];
 }
 

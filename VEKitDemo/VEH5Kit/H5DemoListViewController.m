@@ -12,6 +12,11 @@
 #import "BDBlankDetectViewController.h"
 #import "BDWebPreloadDemoViewController.h"
 
+#import <OneKit/OKSectionData.h>
+
+OK_STRINGS_EXPORT("OKDemoEntryItem","H5DemoListViewController")
+
+
 @interface H5DemoListViewController ()
 
 @end
@@ -31,7 +36,7 @@
 
 - (NSString *)iconName
 {
-    return @"h5";
+    return @"demo_h5";
 }
 
 - (NSArray<OKListCellModel *> *)models

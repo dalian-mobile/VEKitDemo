@@ -11,6 +11,9 @@
 #import <WebKit/WebKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <OneKit/OKApplicationInfo.h>
+#import <OneKit/OKSectionData.h>
+
+OK_STRINGS_EXPORT("OKDemoEntryItem","VECampaignListViewController")
 
 #define ScreenW [UIScreen mainScreen].bounds.size.width
 #define ScreenH [UIScreen mainScreen].bounds.size.height
@@ -304,7 +307,7 @@
 @end
 
 
-@interface VECampaignListViewController()<OKDemoEntryItemProtocol>
+@interface VECampaignListViewController()
 
 @end
 
@@ -317,7 +320,7 @@
 
 - (NSString *)iconName
 {
-    return @"campaign";
+    return @"demo_compaign";
 }
 
 - (void)viewDidLoad {

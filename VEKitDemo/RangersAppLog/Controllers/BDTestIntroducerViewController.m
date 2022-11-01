@@ -15,7 +15,12 @@
 
 #import "OKDemoBaseViewController.h"
 
-@interface BDTestIntroducerViewController ()<OKDemoEntryItemProtocol>
+#import <OneKit/OKSectionData.h>
+
+OK_STRINGS_EXPORT("OKDemoEntryItem","BDTestIntroducerViewController")
+
+
+@interface BDTestIntroducerViewController ()
 
 @end
 
@@ -43,7 +48,7 @@ static NSString *cellReuseID = @"testIntro_1";
 
 - (NSString *)iconName
 {
-    return @"spot";
+    return @"demo_applog";
 }
 
 

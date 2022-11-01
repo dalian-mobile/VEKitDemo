@@ -11,7 +11,13 @@
 #import "VERemoteConfigViewController.h"
 #import "VERemoteConfig/TestPageViewController.h"
 
-@interface VERemoteConfigListViewController ()<OKDemoEntryItemProtocol>
+#import <OneKit/OKSectionData.h>
+
+OK_STRINGS_EXPORT("OKDemoEntryItem","VERemoteConfigListViewController")
+
+
+
+@interface VERemoteConfigListViewController ()
 
 @end
 
@@ -30,7 +36,7 @@
 
 - (NSString *)iconName
 {
-    return @"config";
+    return @"demo_config";
 }
 
 

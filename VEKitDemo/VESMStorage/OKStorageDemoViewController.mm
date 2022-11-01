@@ -14,6 +14,10 @@
 #import <VESMStorage/VESMFileStorage.h>
 #import <VESMStorage/SM4Encryptor.h>
 
+#import <OneKit/OKSectionData.h>
+
+OK_STRINGS_EXPORT("OKDemoEntryItem","OKStorageDemoViewController")
+
 //Message.h
 @interface Message : NSObject
 
@@ -81,7 +85,7 @@ WCDB_PROPERTY(modifiedTime)
 
 - (NSString *)iconName
 {
-    return @"zip";
+    return @"demo_zip";
 }
 
 - (void)setUp
@@ -120,8 +124,8 @@ WCDB_PROPERTY(modifiedTime)
     BOOL result = [self.dbStore.db insertObject:message
                                     into:@"message"];
     if (!result) {
-        NSLog(@"Database insert failed!");
-        [self alertWithMessage:@"Database insert failed!"];
+        NSLog(@"插入失败！");
+        [self alertWithMessage:@"插入失败！"];
     }
     
 }
@@ -133,10 +137,10 @@ WCDB_PROPERTY(modifiedTime)
     NSArray<Message *> *message = [self.dbStore.db getObjectsOfClass:Message.class
                                                     fromTable:@"message"
                                                       orderBy:Message.localID.order()];
-    NSLog(@"Query Result:%@",message);
+    NSLog(@"查询结果:%@",message);
     if (message.count > 0) {
-        NSLog(@"Query Result:%@",message[0].content);
-        [self alertWithMessage:[NSString stringWithFormat:@"Query Result:%@",message[0].content]];
+        NSLog(@"查询结果:%@",message[0].content);
+        [self alertWithMessage:[NSString stringWithFormat:@"查询结果:%@",message[0].content]];
     }
 }
 
@@ -151,10 +155,12 @@ WCDB_PROPERTY(modifiedTime)
     NSArray<Message *> *message = [dbStore.db getObjectsOfClass:Message.class
                                                     fromTable:@"message"
                                                       orderBy:Message.localID.order()];
-    NSLog(@"Query Result:%@",message);
+    NSLog(@"查询结果:%@",message);
     if (message.count > 0) {
-        NSLog(@"Query Result:%@",message[0].content);
-        [self alertWithMessage:[NSString stringWithFormat:@"Query Result:%@",message[0].content]];
+        NSLog(@"查询结果:%@",message[0].content);
+        [self alertWithMessage:[NSString stringWithFormat:@"查询结果:%@",message[0].content]];
+    }else{
+        [self alertWithMessage:[NSString stringWithFormat:@"查询结果为空"]];
     }
 }
 
@@ -162,21 +168,20 @@ WCDB_PROPERTY(modifiedTime)
 - (void)testKVSet
 {
     [self.kvStore setObject:@"Hello,YYCache" forKey:@"testKey"];
+    [self alertWithMessage:@"KV写入：Hello,YYCache"];
 }
 
 - (void)testKVGet
 {
     NSString *result = (NSString *)[self.kvStore objectForKey:@"testKey"];
-    NSLog(@"%@",result);
-    [self alertWithMessage:result];
+    [self alertWithMessage:[NSString stringWithFormat:@"KV读取：%@",result]];
 }
 
 - (void)testKVGetFailed
 {
     VESMKVStorage *kvs = [VESMKVStorage storageWithName:@"OKKVStroage" encryptKey:[SM4Encryptor createSm4Key]];
     NSString *result = (NSString *)[kvs objectForKey:@"testKey"];
-    NSLog(@"%@",result);
-    [self alertWithMessage:result];
+    [self alertWithMessage:[NSString stringWithFormat:@"KV读取：%@",result]];
 }
 
 - (void)testFileWrite
@@ -187,7 +192,7 @@ WCDB_PROPERTY(modifiedTime)
     NSData *toWriteData = [testInfo dataUsingEncoding:NSUTF8StringEncoding];
     BOOL result = [self.fileStore createFileAtPath:filePath contents:toWriteData attributes:@{} encryptKey:self.sm4Key];
     NSLog(@"%d",result);
-    [self alertWithMessage:[NSString stringWithFormat:@"write result:%d",result]];
+    [self alertWithMessage:[NSString stringWithFormat:@"写入结果:%d",result]];
 
 }
 
@@ -198,7 +203,7 @@ WCDB_PROPERTY(modifiedTime)
     NSData *data = [self.fileStore contentsAtPath:filePath encryptKey:self.sm4Key];
     NSString *testInfo = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"%@",testInfo);
-    [self alertWithMessage:testInfo];
+    [self alertWithMessage:[NSString stringWithFormat:@"读取结果:%@",testInfo]];
 
 }
 
@@ -209,7 +214,7 @@ WCDB_PROPERTY(modifiedTime)
     NSData *data = [self.fileStore contentsAtPath:filePath encryptKey:[SM4Encryptor createSm4Key]];
     NSString *testInfo = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"%@",testInfo);
-    [self alertWithMessage:testInfo];
+    [self alertWithMessage:[NSString stringWithFormat:@"读取结果:%@",testInfo]];
 }
 
 

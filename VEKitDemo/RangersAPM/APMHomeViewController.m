@@ -44,7 +44,14 @@
 #import "RangersAPMEventViewController.h"
 # endif
 #endif
-@interface APMHomeViewController ()<UITableViewDelegate, UITableViewDataSource,OKDemoEntryItemProtocol>
+
+
+#import <OneKit/OKSectionData.h>
+
+OK_STRINGS_EXPORT("OKDemoEntryItem","APMHomeViewController")
+
+
+@interface APMHomeViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -75,7 +82,7 @@
 
 - (NSString *)iconName
 {
-    return @"notice";
+    return @"demo_apm";
 }
 
 
@@ -112,12 +119,12 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 __strong typeof(self) strongSelf = weakSelf;
                 if (strongSelf) {
-                    RangersAPMCrashViewController *viewController = [[RangersAPMCrashViewController alloc] init];
+                    RangersAPMWatchDogViewController *viewController = [[RangersAPMWatchDogViewController alloc] init];
                     [strongSelf.navigationController pushViewController:viewController animated:YES];
                 }
             });
         };
-        RangersAPMCellItem *watchItem = [RangersAPMCellItem itemWithTitle:@"崩溃分析" block:watchBlock];
+        RangersAPMCellItem *watchItem = [RangersAPMCellItem itemWithTitle:@"WatchDog" block:watchBlock];
         [_items addObject:watchItem];
 # endif
 # if __has_include("RangersAPMOOMViewController.h")
@@ -125,12 +132,12 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 __strong typeof(self) strongSelf = weakSelf;
                 if (strongSelf) {
-                    RangersAPMCrashViewController *viewController = [[RangersAPMCrashViewController alloc] init];
+                    RangersAPMOOMViewController *viewController = [[RangersAPMOOMViewController alloc] init];
                     [strongSelf.navigationController pushViewController:viewController animated:YES];
                 }
             });
         };
-        RangersAPMCellItem *oomItem = [RangersAPMCellItem itemWithTitle:@"崩溃分析" block:oomBlock];
+        RangersAPMCellItem *oomItem = [RangersAPMCellItem itemWithTitle:@"OOM分析" block:oomBlock];
         [_items addObject:oomItem];
 # endif
 # if __has_include("RangersAPMExceptionViewController.h")
