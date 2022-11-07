@@ -22,9 +22,9 @@ OKAppTaskAddFunction() {
 
 - (void)startWithLaunchOptions:(NSDictionary<UIApplicationLaunchOptionsKey,id> *)launchOptions
 {
-    BDPTimorClientHostPlugins.sharedPlugins.logPlugin = BDPCustomPluginLogImpl.class;
-    BDPTimorClientHostPlugins.sharedPlugins.routerPlugin = BDPCustomPluginRouterImpl.class;
-    BDPTimorClientHostPlugins.sharedPlugins.basicInfoPlugin = BDPCustomPluginBasicInfoImpl.class;
+    BDPTimorClientHostPlugins.logPlugin = BDPCustomPluginLogImpl.class;
+    BDPTimorClientHostPlugins.routerPlugin = BDPCustomPluginRouterImpl.class;
+    BDPTimorClientHostPlugins.basicInfoPlugin = BDPCustomPluginBasicInfoImpl.class;
 }
 
 @end
