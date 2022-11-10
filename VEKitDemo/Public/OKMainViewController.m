@@ -389,7 +389,9 @@ OK_STRINGS_EXPORT("VEAPPTabControllers","OKMainViewController")
                 });
             }
         }
-        NSLog(@"");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView sendSubviewToBack:self.whiteView];
+        });
     }];
  
 }
