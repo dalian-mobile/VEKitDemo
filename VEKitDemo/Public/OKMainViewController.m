@@ -255,6 +255,7 @@ OK_STRINGS_EXPORT("VEAPPTabControllers","OKMainViewController")
 //    self.view.backgroundColor = [UIColor whiteColor];
     self.collectionView.backgroundColor = BACKGROUND_COLOR;
     self.collectionView.alwaysBounceVertical = YES;
+    self.collectionView.accessibilityIdentifier = @"mars_tool_collection";
     [self.view addSubview:self.collectionView];
 
 
@@ -389,9 +390,7 @@ OK_STRINGS_EXPORT("VEAPPTabControllers","OKMainViewController")
                 });
             }
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.collectionView sendSubviewToBack:self.whiteView];
-        });
+        NSLog(@"");
     }];
  
 }
