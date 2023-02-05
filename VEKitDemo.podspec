@@ -203,5 +203,14 @@ TODO: Add long description of the pod here.
     d.dependency 'SGQRCode'
   end
 
+  s.subspec 'VELocation' do |d|
+    d.source_files = 'VEKitDemo/VELocation/**/*.{h,m,mm}'
+    d.public_header_files = 'VEKitDemo/VELocation/**/*.h'
+#    d.dependency 'smash/qrcode'
+    d.dependency 'INTULocationManager'
+    d.dependency 'VEKitDemo/Public'
+
+  end
+
 
 end
